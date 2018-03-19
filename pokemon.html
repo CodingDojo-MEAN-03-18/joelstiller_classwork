@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pokewhat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+            #wrapper{
+                width: 1200px;
+                padding: 10px;
+                margin: auto;
+            }
+            
+            #left{
+                width: 900px;
+                display: inline-block;
+            }
+            
+            #info{
+                display: inline-block;
+                vertical-align: top;
+                width: 200px;
+                padding: 10px;
+                border: 2px red solid;
+            }
+    </style>
+</head>
+<body>
+        <div id="wrapper">
+            <div id="left">
+    
+            </div>
+            <div id="info">
+                <h1></h1>
+                <br>
+                <img src="" alt="">
+                <br>
+                <h2 id="Type"></h2>
+                <br>
+                <ul>
+                </ul>
+                <br>
+                <h2 id="height_info"></h2>
+                <br>
+                <p id="height"></p>
+                <br>
+                <h2 id="weight_info"></h2>
+                <br>
+                <p id='weight'></p>
+                
+            </div>
+        </div>
+    </body>
+<script>
+        $(document).ready(function(){
+            for(var i=1; i<181; i++){
+                $('#left').append(`<img src="pokey/pokemon/${i}.png" id="${i}">`);
+            }
+        });
+        $(document).on("click", "img", function(){
+            $.get("https://pokeapi.co/api/v2/pokemon/"+$(this).attr('id')+"/", function(res) {
+                    $('#Type').text("Type");
+                    $('#height_info').text("Height");
+                    $('#weight_info').text("Weight");
+                    $('#info h1').text(res.name);
+                    $('#info img').attr("src",res.sprites.front_shiny);
+                    $('#info img').attr("alt",res.name + " image");
+                    $("#info ul").empty();
+                    for (var key in res.types){
+                        $("#info ul").append("<li> " + res.types[key].type.name + "</li>");
+                    }
+                    $('#height').text(res.height);
+                    $('#weight').text(res.weight);
+                }, "json");
+        });
+    </script>
+</html>

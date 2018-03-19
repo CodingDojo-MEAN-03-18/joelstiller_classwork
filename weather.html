@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Get some Weather</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('form').submit(function() {
+            var url = "http://api.openweathermap.org/data/2.5/weather?q=" + $('#town').val() + "&&units=imperial&&appid=326b69097b89287316dea6bde748cfda";
+            $.get(url, function(res) {
+                console.log(res);   
+                var f = '\u0192';
+                $('#name').text(res.name);
+                $('#temp').text("Temperature: " + res.main.temp +" "+ f);
+            },'json').fail(function(){
+                $('#name').text("City not found");
+                $('#temp').text("");
+            })
+            return false;
+        });
+    });
+    </script>
+</head>
+<body>
+    <form action="none" method="post">
+        <input type="text" name="City" id="town">
+        <button>Search Weather</button>
+    </form>
+    <div id="info">
+        <p id="name"></p>
+        <p id="temp"></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lets Hunt</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</head>
+<body>
+    <button id="thebutton">Click Me!</button>
+    <div id="holder">
+
+    </div>
+</body>
+<script>
+    $( document ).ready(function() {
+    var button = document.getElementById("thebutton")
+    button.addEventListener("click",dostuff);
+    function dostuff() {
+        $.get("https://api.github.com/users/kassimila", displayName);
+        function displayName(data) {
+            $("#holder").append("<p>" + data.name + "</p>")
+        }
+    }
+    });
+</script>
+</html>

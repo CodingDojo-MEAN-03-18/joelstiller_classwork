@@ -6,6 +6,8 @@ var fs = require('fs');
 var server = http.createServer(function (request, response){
     // see what URL the clients are requesting:
     console.log('client request URL: ', request.url);
+    console.log('hello');
+    console.log('REQUEST OBJECT', request);
     // Routing HTML files.
     if(request.url === '/cars') {
         fs.readFile('./views/cars.html', 'utf8', function (errors, contents){

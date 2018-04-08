@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animals!</title>
+</head>
+<body>
+  <a href="/">Home</a>
+  <a href="/animals/new">Add_New</a>
+  <h1>Check out these animals!</h1>
+  <% for (const animal of animals) { %>
+    <h3>Type: <%= animal.type %></h3>
+    <p>Name: <%= animal.name %></p>
+    <p>Favorite Food: <%= animal.food %> </p>
+    <p><a href="/animals/<%= animal.id %>">Modify</a></p>
+    <form action="/<%= animal.id %>/destroy" method='post'>
+        <input type="submit" value="Delete">
+      </form>
+  <% } %>
+</body>
+</html>

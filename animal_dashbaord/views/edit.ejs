@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit</title>
+</head>
+<body>
+  <h1>Edit <%= animal.name %>!</h1>
+  <form action="/animals/<%= animal.id %>" method='post'>
+    Name: <input type="text" name="name" value="<%=  animal.name %>">
+    Type: <input type="text" name="type" value="<%= animal.type %>">
+    Food: <input type="text" name="food" value="<%=  animal.food %>">
+    <input type="submit" value="Edit">
+  </form>
+  <a href="/">Home</a>
+</body>
+</html>
